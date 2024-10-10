@@ -3,30 +3,6 @@ Couverture: 24.63%
 
 
 
-- NetworkSessionEventTest
-
-Chemin d'accès: src/test/java/com/marginallyclever/communications/NetworkSessionEventTest.java
-
-
-
-testNetworkSessionEventCreation(): On veut s'assurer qu'il n'y a pas de souci lors de l'initialisation d'un objet 'NetworkSessionEvent()', et que les arguments passés à l'initialisation sont bien ceux que l'on retrouve dans l'objet en soi.
-
-testNetworkSessionEventFlags(): Les motivations ressemblent à celles du test précédent. Ici, on veut s'assurer que chaque valeur possible d'un flag se retransmette correctement dans l'objet lors de l'initialisation.
-
-
-
-- TransportLayerTest
-
-Chemin d'accès: src/test/java/com/marginallyclever/communications/TransportLayerTest.java
-
-
-
-testOpenConnection(): Ici on veut s'assurer que la méthode '.openConnection()' de l'objet 'DummmyTransportLayer' ait le comportement attendu, c'est à dire ouvrir une session avec le nom attendu de la configuration passé en entrée.
-
-testListConnections(): On veut vérifier qu'on puisse bien récupérer l'information des sessions encore actives avec 'listConnections()'. On utilise le test précédent en tant qu'arrange, et le test devrait vérifier que le nom de la session initialisée précédemment est bien récupérable.
-
-
-
 - CollapsiblePanelTest [GRAPHIQUE, EXECUTION NON-AUTOMATIQUE]
 
 Chemin d'accès: src/test/java/com/marginallyclever/makelangelo/CollapsiblePanelTest.java
