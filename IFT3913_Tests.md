@@ -1,5 +1,5 @@
 Documentation des tests implémentés: tâche 2.
-Couverture: 24.63%
+Couverture: 24.58%
 
 
 
