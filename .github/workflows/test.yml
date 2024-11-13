@@ -7,6 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jvm_flags:
+          - "-XX:+UseG1GC"
+          - "-XX:+UnlockDiagnosticVMOptions"
+          - "-XX:+PrintGCDetails"
+          - "-XX:+PrintCompilation"
+          - "-XX:+HeapDumpOnOutOfMemoryError"
+          
     steps:
     - uses: actions/checkout@v4
 
@@ -16,6 +25,9 @@ jobs:
         java-version: '17'
         cache: 'maven'
 
+    - name: Set Maven Options
+      run: echo "MAVEN_OPTS=${{ matrix.jvm_flags }}" >> $GITHUB_ENV
+      
     - name: Build and Test with Maven
       timeout-minutes: 15
       run: ./mvnw -B verify
@@ -26,9 +38,14 @@ jobs:
         coverage=$(python3 config/coverage.py target/site/jacoco/jacoco.csv) 
         echo "COVERAGE=$coverage" >> $GITHUB_ENV
 
+    - name: Log Current JVM Flag and Coverage
+      run: |
+        echo "Running with JVM flag: ${{ matrix.jvm_flags }}"
+        echo "Coverage for flag '${{ matrix.jvm_flags }}': $COVERAGE%"
+
     - name: Fail if coverage has not improved.
       run: |
-        coverage=$COVERAGE
+        coverage=${{ env.COVERAGE }}
         threshold=24.46
         if (( $(echo "$coverage - $threshold <= 0.1" | bc -l) )); then
           echo "Coverage is not improved."
