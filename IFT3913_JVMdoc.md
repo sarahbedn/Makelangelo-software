@@ -5,7 +5,9 @@
 Pour rendre la GitHub Action compatible avec plusieurs flags JVM, nous avons utilisé `matrix.jvm_flags` dans le fichier de configuration. Cela permet d'exécuter le pipeline Maven avec une série de paramètres différents pour observer leurs effets. Voici un résumé des changements principaux :
 
 **1. Ajout de matrix.jvm_flags** : Nous avons intégré une matrice de cinq flags JVM (-XX:+UseG1GC, -XX:+UnlockDiagnosticVMOptions, -XX:+PrintGCDetails, -XX:+PrintCompilation, -XX:+HeapDumpOnOutOfMemoryError) dans la configuration de l’action. Ce choix permet d'exécuter des builds parallèles avec chaque flag, optimisant les ressources et accélérant la collecte de données comparatives sur les effets spécifiques de chaque flag. Cela améliore l'efficacité des tests et fournit des insights diversifiés pour chaque build.
+
 **2. Modification de MAVEN_OPTS** : Pour chaque itération de build, le flag correspondant est assigné dynamiquement à la variable d'environnement MAVEN_OPTS, configurant Maven pour utiliser la configuration JVM spécifique de la matrice. Cette approche garantit que chaque build Maven bénéficie d’une configuration JVM adaptée, ce qui permet de mesurer avec précision les effets de chaque flag sur la couverture de code, la stabilité et les performances.
+
 **3. Nouvelle étape de logging** : Un log spécifique a été ajouté pour documenter le flag JVM utilisé dans chaque itération et afficher le taux de couverture de code obtenu avec ce flag. Ce log est essentiel pour suivre l’impact des paramètres JVM en temps réel et permet d’identifier facilement les configurations les plus performantes. Ces logs facilitent également le diagnostic en cas de dysfonctionnements ou de dégradations de performance associées à un flag spécifique.
 
 
