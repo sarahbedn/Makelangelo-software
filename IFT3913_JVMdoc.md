@@ -17,27 +17,37 @@ Les flags sélectionnés visent à améliorer les performances et la visibilité
 
 1. **`-XX:+UseG1GC`**  
 **• Qualité** : Le garbage collector G1 aide à maintenir la stabilité du système en assurant un nettoyage de la mémoire plus prévisible et en minimisant les interruptions. Cette stabilité est essentielle pour des tests continus et fiables, car elle réduit les risques d’erreurs inattendues dues à des pauses prolongées dans la gestion de la mémoire.
+
 **• Performance** : Ce flag est optimisé pour les applications avec des charges de travail fluctuantes et des exigences de réactivité. En divisant la gestion de la mémoire en petites régions et en ciblant celles qui ont le plus de « débris », G1 réduit le temps passé en pause par rapport aux autres garbage collectors.
+
 **• Observabilité** : G1 fournit des données précieuses sur la fréquence et la durée des cycles de garbage collection, ce qui peut être crucial pour surveiller la santé de l’application en temps réel et ajuster les paramètres si des inefficacités sont détectées.
 
 2. **`-XX:+UnlockDiagnosticVMOptions`**  
 **• Qualité** : En activant des options de diagnostic supplémentaires, ce flag améliore les possibilités de débogage, permettant d'identifier plus rapidement les problèmes de qualité tels que les fuites de mémoire et les erreurs de logique dans le code.
+
 **• Performance** : Bien que ce flag ne vise pas directement la performance, il permet d'accéder à d’autres flags qui peuvent être utilisés pour des tests de performance avancés, optimisant ainsi les tests et réglages futurs.
+
 **• Observabilité** : Ce flag augmente considérablement l’observabilité en permettant l’activation d’options de diagnostic supplémentaires pour une vue plus approfondie des processus internes de la JVM, ce qui est précieux pour l’analyse des performances et de la qualité.
 
 3. **`-XX:+PrintGCDetails`**  
 **• Qualité** : En détaillant les opérations de garbage collection, ce flag aide à identifier les zones de code qui génèrent une utilisation excessive de mémoire ou de collectes inutiles. Cela permet d’affiner le code pour une meilleure efficacité mémoire, évitant ainsi des problèmes de surcharge ou d’épuisement de la mémoire.
+
 **• Performance** : En analysant les logs détaillés, on peut ajuster les paramètres de la JVM pour réduire les cycles de garbage collection qui pourraient affecter la fluidité de l’application, assurant ainsi des performances plus constantes.
+
 **• Observabilité** : Ce flag améliore la visibilité sur les processus de garbage collection en affichant des détails, tels que le temps passé dans chaque phase et l'espace récupéré, permettant une compréhension approfondie de la gestion de la mémoire dans le contexte spécifique de l'application.
 
 4. **`-XX:+PrintCompilation`**  
 **• Qualité** : En affichant chaque méthode compilée, ce flag aide à détecter des méthodes qui peuvent bénéficier d’optimisations. Par exemple, les méthodes fréquemment réutilisées et qui nécessitent beaucoup de ressources peuvent être ciblées pour des optimisations, renforçant la qualité et l'efficacité du code.
+
 **• Performance** : Ce flag permet de détecter des ralentissements dus à la compilation JIT (Just-In-Time) en temps réel. En étudiant ces informations, il est possible de réduire l’impact de la compilation dynamique sur l’exécution en optimisant la configuration de la JVM pour certaines méthodes critiques.
+
 **• Observabilité** : Ce flag fournit une vue continue des compilations JIT en cours, ce qui est utile pour comprendre le flux d’exécution et optimiser les méthodes qui ralentissent le système, particulièrement dans les applications où les performances en temps réel sont essentielles.
 
 5. **`-XX:+HeapDumpOnOutOfMemoryError`**  
 **• Qualité** : Ce flag est essentiel pour diagnostiquer les erreurs critiques liées à la mémoire, telles que les fuites. Lorsqu’un OutOfMemoryError se produit, le dump de la mémoire offre un instantané détaillé de l’état du système, permettant d’identifier les objets ou processus responsables et de corriger les erreurs pour améliorer la fiabilité de l’application.
+
 **• Performance** : En identifiant les causes profondes des erreurs de mémoire, ce flag aide à éviter les crashs futurs, ce qui assure des performances stables à long terme. Bien que ce flag soit plus réactif, il fournit des données qui, lorsqu'elles sont analysées, mènent à des optimisations.
+
 **• Observabilité** : Ce flag augmente la capacité de diagnostic post-mortem en offrant des informations précises sur l'état de la mémoire lors d'une panne. En analysant le dump, il devient plus facile de suivre les causes et de prendre des mesures proactives pour améliorer la gestion de la mémoire.
 
 ## Humour
